@@ -24,6 +24,7 @@ public class HUDCanvas : MonoBehaviour
     public Text livesTextbox; //textbox for the lives
     public Text scoreTextbox; //textbox for the score
     public Text highScoreTextbox; //textbox for highscore
+    public Text currentText;
     
     //GM Data
     private int level;
@@ -39,7 +40,7 @@ public class HUDCanvas : MonoBehaviour
         //reference to levle info
         level = gm.gameLevelsCount;
         totalLevels = gm.gameLevels.Length;
-
+        gm.SpawnSlots();
 
 
         SetHUD();
@@ -50,6 +51,8 @@ public class HUDCanvas : MonoBehaviour
     {
         GetGameStats();
         SetHUD();
+        currentText.text = "Current Cube Selected: " + CubeSlot.currentCube;
+
     }//end Update()
 
     void GetGameStats()
@@ -69,4 +72,28 @@ public class HUDCanvas : MonoBehaviour
 
     }//end SetHUD()
 
+    public void setTransparent()
+    {
+        gm.SetTransparent();
+    }
+    public void setOpaque()
+    {
+        gm.SetOpaque();
+    }
+    public void CamTop()
+    {
+        gm.CamTop();
+    }
+    public void CamFront()
+    {
+        gm.CamFront();
+    }
+    public void CamSide()
+    {
+        gm.CamSide();
+    }
+    public void checkSolution()
+    {
+        gm.CheckSolution();
+    }
 }

@@ -10,20 +10,41 @@ using UnityEngine;
 public class CubeSlot : MonoBehaviour
 {
     [HideInInspector]
+    public GameObject thisCubeSlot;
+    [HideInInspector]
     public GameObject HoverSpot;
+    [HideInInspector]
+    public GameObject ActiveSpot;
+    [HideInInspector]
     public GameObject trigger1;
+    [HideInInspector]
     public GameObject trigger2;
+    [HideInInspector]
     public GameObject trigger3;
+    [HideInInspector]
     public GameObject trigger4;
+    [HideInInspector]
+    public int numberOfBlocks = 0;
+    public GameObject TransparentCube;
+    public GameObject OpaqueCube;
+    [HideInInspector]
+    public GameObject newCube;
+    [HideInInspector]
+    public bool hover=false;
+    [HideInInspector]
+    public static string currentCube="opaque";
 
     private void Awake()
     {
-        HoverSpot = GameObject.Find("HoverSpot");
+        thisCubeSlot = this.gameObject;
+        HoverSpot = thisCubeSlot.transform.Find("HoverSpot").gameObject;
+        ActiveSpot = thisCubeSlot.transform.Find("ActiveSpot").gameObject;
         HoverSpot.SetActive(false);
-        trigger1 = GameObject.Find("Spot1");
-        trigger2 = GameObject.Find("Spot2");
-        trigger3 = GameObject.Find("Spot3");
-        trigger4 = GameObject.Find("Spot4");
+        trigger1 = thisCubeSlot.transform.Find("Spot1").gameObject;
+        trigger2 = thisCubeSlot.transform.Find("Spot2").gameObject;
+        trigger3 = thisCubeSlot.transform.Find("Spot3").gameObject;
+        trigger4 = thisCubeSlot.transform.Find("Spot4").gameObject;
+
     }
     
     // Start is called before the first frame update
@@ -34,19 +55,27 @@ public class CubeSlot : MonoBehaviour
 
     public string getFirst()
     {
-        return trigger1.CubeCollider.getCurrent();
+        if (trigger1.GetComponent<CubeCollider>().getCurrent() == "Transparent" || trigger1.GetComponent<CubeCollider>().getCurrent() == null)
+            return "empty";
+        return trigger1.GetComponent<CubeCollider>().getCurrent();
     }
     public string getSecond()
     {
-        return trigger2.CubeCollider.getCurrent();
+        if (trigger2.GetComponent<CubeCollider>().getCurrent() == "Transparent" || trigger2.GetComponent<CubeCollider>().getCurrent() == null)
+            return "empty";
+        return trigger2.GetComponent<CubeCollider>().getCurrent();
     }
     public string getThird()
     {
-        return trigger3.CubeCollider.getCurrent();
+        if (trigger3.GetComponent<CubeCollider>().getCurrent() == "Transparent" || trigger3.GetComponent<CubeCollider>().getCurrent() == null)
+            return "empty";
+        return trigger3.GetComponent<CubeCollider>().getCurrent();
     }
     public string getFourth()
     {
-        return trigger4.CubeCollider.getCurrent();
+        if (trigger4.GetComponent<CubeCollider>().getCurrent() == "Transparent" || trigger4.GetComponent<CubeCollider>().getCurrent() == null)
+            return "empty";
+        return trigger4.GetComponent<CubeCollider>().getCurrent();
     }
 
     // Update is called once per frame
@@ -57,11 +86,46 @@ public class CubeSlot : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        HoverSpot.SetActive(true);
+        this.HoverSpot.SetActive(true);
+        this.ActiveSpot.SetActive(false);
+        hover = true;
     }
 
     private void OnMouseExit()
     {
-        HoverSpot.SetActive(false) ;
+        this.HoverSpot.SetActive(false);
+        this.ActiveSpot.SetActive(true);
+        hover = false;
+    }
+
+    private void OnMouseDown()
+    {
+        if (hover)
+            PlaceCube();
+    }
+
+    private void PlaceCube()
+    {
+        if (numberOfBlocks >= 4)
+        {
+            //put code to say the cube slot is full
+            return;
+        }
+        else
+        {
+            if (currentCube=="transparent" )
+            {
+                newCube = Instantiate(TransparentCube) as GameObject;
+            }
+            if (currentCube=="opaque")
+            {
+                newCube = Instantiate(OpaqueCube) as GameObject;
+            }
+            Vector3 slotPOS = this.transform.position;
+
+            newCube.transform.localPosition = new Vector3(slotPOS.x, slotPOS.y+5, slotPOS.z);
+            //newCube.GetComponent<Rigidbody>().isKinematic = true;
+            numberOfBlocks++;
+        }
     }
 }

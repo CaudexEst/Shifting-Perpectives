@@ -174,7 +174,7 @@ MonoBehaviour:
   numberOfLives: 3
   levelLost: 0
   defaultEndMessage: Game Over
-  looseMessage: You Loose
+  looseMessage: You Lose
   winMessage: You Win
   endMsg: 
   startScene: start_scene
@@ -186,6 +186,8 @@ MonoBehaviour:
   nextLevel: 0
   gameState: 0
   playerWon: 0
+  cubeSlotHolder: {fileID: 0}
+  cubeSlotprefab: {fileID: 3325125203724412500, guid: 15c6559f5a998614a9d5b7a38ecb9cf6, type: 3}
 --- !u!1 &660969369
 GameObject:
   m_ObjectHideFlags: 0
@@ -599,7 +601,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.011764706, g: 0.34509805, b: 0.54901963, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -906,7 +908,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Game Designed by : Your Name Here'
+  m_Text: 'Game Designed by : Ben Jenkins'
 --- !u!222 &1325284406
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1197,7 +1199,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GAME TITLE
+  m_Text: Shifting Perspectives
 --- !u!222 &1603986572
 CanvasRenderer:
   m_ObjectHideFlags: 0

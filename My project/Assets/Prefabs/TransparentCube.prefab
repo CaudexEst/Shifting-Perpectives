@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7734790318811474658}
   - component: {fileID: 7734790318811474659}
   - component: {fileID: 7734790318811474656}
+  - component: {fileID: 8330242839536466847}
   m_Layer: 0
   m_Name: TransparentCube
   m_TagString: Transparent
@@ -90,7 +91,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7734790318811474657}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 10e68357459fe714f8a381104a79850a, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -111,4 +112,16 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
+--- !u!114 &8330242839536466847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7734790318811474657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1f29cf4a44641041a9733155c4f4db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
